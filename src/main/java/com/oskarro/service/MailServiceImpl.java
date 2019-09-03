@@ -1,6 +1,7 @@
-package service;
+package com.oskarro.service;
 
-import bean.Mail;
+import com.oskarro.bean.Mail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -8,12 +9,8 @@ import org.springframework.stereotype.Service;
 @Service("mailService")
 public class MailServiceImpl implements MailService {
 
+    @Autowired
     JavaMailSender mailSender;
-
-    public MailServiceImpl(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
-
 
     @Override
     public void sendEmail(Mail mail) {
@@ -21,7 +18,7 @@ public class MailServiceImpl implements MailService {
         message.setFrom(mail.getMailFrom());
         message.setTo(mail.getMailTo());
         message.setSubject(mail.getMailSubject());
-        message.setText(mail.getMailContent);
+        message.setText(mail.getMailContent());
         mailSender.send(message);
     }
 }

@@ -1,6 +1,6 @@
-package service;
+package com.oskarro.service;
 
-import bean.Mail;
+import com.oskarro.bean.Mail;
 
 public interface MailService {
     public void sendEmail(Mail mail);
